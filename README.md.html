@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ekta 🌹</title>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe6eb, #fff);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .page {
+    display: none;
+    text-align: center;
+    background: rgba(255,255,255,0.9);
+    padding: 40px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .active { display: block; }
+
+  h1 {
+    color: #b11226;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #444;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+
+  /* 👇 Image size controlled here */
+  img {
+    width: 100%;
+    max-width: 85%;
+    height: auto;
+    border-radius: 14px;
+    margin: 20px auto;
+    display: block;
+  }
+
+  button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 25px;
+    margin: 10px;
+    font-size: 17px;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .back {
+    background: #ddd;
+  }
+
+  .no {
+    background: #ccc;
+    position: absolute;
+  }
+
+  .flowers button {
+    background: #ffd6e0;
+  }
+
+  #flowerText {
+    font-size: 20px;
+    margin-top: 15px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Page 1 -->
+<div class="page active" id="page1">
+  <h1>🍨 Hiiiiiii Rasmalaiiiiiii</h1>
+  <p>Happy Rose Day..As we cannot meet today..heres a surprise for you.</p>
+  <button class="yes" onclick="nextPage(2)">Next</button>
+</div>
+
+<!-- Page 2 -->
+<div class="page" id="page2">
+  <h1>Rose Day 🌹</h1>
+  <p>Do you want a rose on this Rose Day?</p>
+  <button class="yes" onclick="nextPage(3)">Yes</button>
+  <button class="no" id="noBtn">No</button>
+</div>
+
+<!-- Page 3 -->
+<div class="page" id="page3">
+  <p>😁 You clicked yes.<br>I knew you would...hehe...</p>
+  <button class="yes" onclick="nextPage(4)">Next</button>
+</div>
+
+<!-- Page 4 -->
+<div class="page" id="page4">
+  <h1>Choose one</h1>
+  <div class="flowers">
+    <button onclick="showRose('single','rose.jpg')">🌹 Single Rose</button>
+    <button onclick="showRose('bouquet','bouquet.jpg')">💐 Bouquet of Roses</button>
+  </div>
+</div>
+
+<!-- Page 5 -->
+<div class="page" id="page5">
+  <img id="flowerImg">
+  <p id="flowerText"></p>
+
+  <button class="back" onclick="nextPage(4)">Choose again</button>
+
+  <p style="margin-top:15px;color:#b11226;font-size:16px;">— Neel</p>
+</div>
+
+<script>
+function nextPage(num) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + num).classList.add('active');
+}
+
+// NO button runs away
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseover', () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+function showRose(type, imgPath) {
+  document.getElementById('flowerImg').src = imgPath;
+
+  if (type === "bouquet") {
+    document.getElementById('flowerText').innerText =
+      "Maybe one rose wasn’t enough.";
+  } else {
+    document.getElementById('flowerText').innerText =
+      "Here is a rose for you.";
+  }
+
+  nextPage(5);
+}
+</script>
+
+</body>
+</html>
